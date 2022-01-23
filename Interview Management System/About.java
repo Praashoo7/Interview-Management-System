@@ -35,18 +35,12 @@ public class About extends JFrame implements ActionListener
 		l3 = new JLabel("Developers");
 		l3.setFont(f2);
 		l3.setForeground(Color.white);
-		l4 = new JLabel("Patil Prashant");
+		l4 = new JLabel("Prashant Patil");
 		l4.setFont(f);
 		l4.setForeground(Color.white);
-		l5 = new JLabel("E-Mail : prashant77@gmail.com");
+		l5 = new JLabel("E-Mail : rnttl90@gmail.com");
 		l5.setFont(f);
 		l5.setForeground(Color.white);
-		l6 = new JLabel("Ghate Harshal");
-		l6.setFont(f);
-		l6.setForeground(Color.white);
-		l7 = new JLabel("E-Mail : harshal99@gmail.com");
-		l7.setFont(f);
-		l7.setForeground(Color.white);
 		
 		l.setBounds(400, 79, 400, 100);
 		l1.setBounds(460, 200, 400, 50);
@@ -54,8 +48,6 @@ public class About extends JFrame implements ActionListener
 		l3.setBounds(475, 350, 400, 50);
 		l4.setBounds(479, 390, 400,50);
 		l5.setBounds(400, 425, 400,50);
-		l6.setBounds(475, 460, 400, 50);
-		l7.setBounds(410, 495, 400,50);
 		
 		add(l);
 		add(l1);
@@ -63,8 +55,6 @@ public class About extends JFrame implements ActionListener
 		add(l3);
 		add(l4);
 		add(l5);
-		add(l6);
-		add(l7);
 	}
 	public void actionPerformed(ActionEvent e)
 	{
