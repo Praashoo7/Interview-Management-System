@@ -32,7 +32,7 @@ public class About extends JFrame implements ActionListener
 		l2 = new JLabel("Mali Mam");
 		l2.setFont(f1);
 		l2.setForeground(Color.white);
-		l3 = new JLabel("Developers");
+		l3 = new JLabel("Developer");
 		l3.setFont(f2);
 		l3.setForeground(Color.white);
 		l4 = new JLabel("Prashant Patil");
