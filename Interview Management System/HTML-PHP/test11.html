@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="">
+<head>
+    <meta charset="utf-8" />
+    <title>Test</title>
+</head>
+<body onkeydown="return (event.keyCode == 154)">
+    <style>
+        #frame001 {
+            border-radius: 5px;
+            background:url(image.jpg);
+            border: 2px solid rgba(45, 192, 255, 240);
+            height: 610px;
+            width: 1345px;
+			font-family:Caviar Dreams;
+        }
+
+        .buttons001 {
+            background-color:rgba(255, 255, 255, 0.8);
+            color: black;
+            width: 600px;
+            height: 50px;
+            border-radius: 5px;
+			font-family:Caviar Dreams;
+			font-size: 18px;
+        }
+
+        .buttons002 {
+            background-color:rgba(255, 255, 255, 0.8);
+            color: black;
+            width: 70px;
+            height: 35px;
+            border-radius: 5px;
+			font-family:Caviar Dreams;
+			font-size: 17px;
+        }
+		
+		.repeat001{
+		background-color:rgba(45, 192, 255, 240);
+            color: white;
+            width: 70px;
+            height: 30px;
+            border-radius: 5px;
+			font-family:Caviar Dreams;
+			font-size: 17px;
+		}
+
+        #font001 {
+            text-align: center;
+            font-size: large;
+            color:rgba(255, 255, 255);
+			font-family:Caviar Dreams;
+        }
+    </style>
+    <div id="frame001">
+        <div id="font001">
+            <h2>Test</h2><text>Question : <text id="number001">0</text></text><br />
+            <text>Right Answers : <text id="score001">0</text></text><br /><br />
+            <text>Time : <text id="time001">2700</text> Seconds</text><br />
+            <hr />
+            <div id="disappear001">
+                <button class="buttons002" onclick="begin001()">Begin</button>
+            </div>
+            <p id="message001"></p>
+            <p id="message002"></p>
+            <p id="message003"></p>
+            <p id="message004"></p>
+        </div>
+    </div>
+    <script>
+        var question001 = ["Which of the following is not a logical data-base structure?",
+            "Which of the following is a database administrator's function?",
+            "Primitive operations common to all record management systems include",
+            "Each of data files has a _____ that describe the way the data is stored in the file.",
+            "Data security threats include",
+            "In SQL, which command(s) is(are) used to enable/disable a database trigger?",
+            "In a relational schema, each tuple is divided into fields called",
+            "A scheme describes",
+            "A computer file can be best described as",
+            "Data integrity control",
+			"Address 200H contains the byte 3FH. What is the decimal equivalent of 3FH",
+			"The functional difference between SR flip-flop and JK flip-flop is that",
+			"If a microcomputer has a 64K memory, what are the hexadecimal notations for the first and last memory location?",
+			"Which TTL sub-family has maximum speed?",
+			"The m-bit parallel adder consists of:",
+			"The 2764 is 65,536-bit EPROM organized as 8,192 words of 8 bits each. How many address lines does it have?",
+			"What does 4k represent?",
+			"The XOR gates are ideal for testing parity because even-parity words produce a _____ output and odd-parity words produce a _____ output",
+			"What is the ASCII code for T?",
+			"The functional capacity for LSI devices is",
+			"A default catch block catches",
+			"When you omit parameters from a function call, values can be provided by",
+			"The expression c = i++ causes",
+			"An identifier in C",
+			"Which of the following creates a String named constant called partNo, whose value is AB45?",
+			"The main difference in operation between an 'if statement and a 'while' statement is",
+			"The 'continue' statement is used to",
+			"To use the strcpy function, you must include the _____ header file in your program",
+			"The number of the relational operators in the C language is",
+			"Which of the following will increase the value stored in the first element of the fee array by 2?",
+        ];
+
+        var options001 = ["<button class=buttons001 onclick=q1i()>Tree</button><br /><br /><button class=buttons001 onclick=q1i()>Relational</button><br /><br /><button class=buttons001 onclick=q1i()>Network</button><br /><br /><button class=buttons001 onclick=q1c()>Chain</button><br /><br /><button class=buttons001 onclick=q1i()>All of the above</button>"];
+        var options002 = ["<button class=buttons001 onclick=q1i()>Database Design</button><br /><br /><button class=buttons001 onclick=q1i()>Backing up the Database</button><br /><br /><button class=buttons001 onclick=q1i()>Performance Monitoring</button><br /><br /><button class=buttons001 onclick=q1i()>User Coordination</button><br /><br /><button class=buttons001 onclick=q1c()>All of the above</button>"];
+        var options003 = ["<button class=buttons001 onclick=q1i()>Print</button><br /><br /><button class=buttons001 onclick=q1c()>Sort</button><br /><br /><button class=buttons001 onclick=q1i()>Look-up</button><br /><br /><button class=buttons001 onclick=q1i()>All of the above</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options004 = ["<button class=buttons001 onclick=q1c()>File structure</button><br /><br /><button class=buttons001 onclick=q1i()>Records</button><br /><br /><button class=buttons001 onclick=q1i()>Fields</button><br /><br /><button class=buttons001 onclick=q1i()>Database</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options005 = ["<button class=buttons001 onclick=q1i()>Hardware Failure</button><br /><br /><button class=buttons001 onclick=q1c()>Privacy Invasion</button><br /><br /><button class=buttons001 onclick=q1i()>Fraudulent Manipulation of Data</button><br /><br /><button class=buttons001 onclick=q1i()>All of the above</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options006 = ["<button class=buttons001 onclick=q1c()>ALTER TRIGGER</button><br /><br /><button class=buttons001 onclick=q1i()>ALTER DATABASE</button><br /><br /><button class=buttons001 onclick=q1i()>ALTER TABLE</button><br /><br /><button class=buttons001 onclick=q1i()>MODIFY TRIGGER</button><br /><br /><button class=buttons001 onclick=q1i()>All of the above</button>"];
+        var options007 = ["<button class=buttons001 onclick=q1i()>Relations</button><br /><br /><button class=buttons001 onclick=q1c()>Domains</button><br /><br /><button class=buttons001 onclick=q1i()>Queries</button><br /><br /><button class=buttons001 onclick=q1i()>All of the above</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options008 = ["<button class=buttons001 onclick=q1i()>Data Elements</button><br /><br /><button class=buttons001 onclick=q1i()>Records and Files</button><br /><br /><button class=buttons001 onclick=q1i()>Record Relationships</button><br /><br /><button class=buttons001 onclick=q1c()>All of the above</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options009 = ["<button class=buttons001 onclick=q1i()>A Single Data Item</button><br /><br /><button class=buttons001 onclick=q1i()>A General Collection of Data Items</button><br /><br /><button class=buttons001 onclick=q1c()>An Orderly Collection of Data Items</button><br /><br /><button class=buttons001 onclick=q1i()>A Random Collection of Data Items</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options010 = ["<button class=buttons001 onclick=q1i()>Is Used to Set Upper and Lower Limits on Numeric Data</button><br /><br /><button class=buttons001 onclick=q1i()>Requires the use of Passwords to Prohibit Unauthorized Access to the File</button><br /><br /><button class=buttons001 onclick=q1c()>Has the Data Dictionary keep the Date and Time of last Access last Back-up, and most recent modification for all Files</button><br /><br /><button class=buttons001 onclick=q1i()>All of the above</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+		var options011 = ["<button class=buttons001 onclick=q1c()>63</button><br /><br /><button class=buttons001 onclick=q1i()>32</button><br /><br /><button class=buttons001 onclick=q1i()>16</button><br /><br /><button class=buttons001 onclick=q1i()>38</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options012 = ["<button class=buttons001 onclick=q1i()>JK flip-flop is faster than SR flip-flop</button><br /><br /><button class=buttons001 onclick=q1i()>JK flip-flop has a feed back path</button><br /><br /><button class=buttons001 onclick=q1c()>JK flip-flop accepts both inputs 1</button><br /><br /><button class=buttons001 onclick=q1i()>JK flip-flop does not require external clock</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options013 = ["<button class=buttons001 onclick=q1i()>0000, EEEE</button><br /><br /><button class=buttons001 onclick=q1i()>0, 64</button><br /><br /><button class=buttons001 onclick=q1c()>0000, FFFF</button><br /><br /><button class=buttons001 onclick=q1i()>0000, 9999</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options014 = ["<button class=buttons001 onclick=q1i()>Standard TTL</button><br /><br /><button class=buttons001 onclick=q1c()>Schottky-Clamped TTL</button><br /><br /><button class=buttons001 onclick=q1i()>High Speed TTL</button><br /><br /><button class=buttons001 onclick=q1i()>Low Power TTL</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options015 = ["<button class=buttons001 onclick=q1i()>(m+1) full adders</button><br /><br /><button class=buttons001 onclick=q1i()>m/2 full adders</button><br /><br /><button class=buttons001 onclick=q1i()>m-1 full adders</button><br /><br /><button class=buttons001 onclick=q1c()>m full adders</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options016 = ["<button class=buttons001 onclick=q1i()>12</button><br /><br /><button class=buttons001 onclick=q1i()>14</button><br /><br /><button class=buttons001 onclick=q1c()>13</button><br /><br /><button class=buttons001 onclick=q1i()>8</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options017 = ["<button class=buttons001 onclick=q1i()>4000</button><br /><br /><button class=buttons001 onclick=q1c()>4096</button><br /><br /><button class=buttons001 onclick=q1i()>40</button><br /><br /><button class=buttons001 onclick=q1i()>400</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options018 = ["<button class=buttons001 onclick=q1c()>Low, High</button><br /><br /><button class=buttons001 onclick=q1i()>High, Low</button><br /><br /><button class=buttons001 onclick=q1i()>Odd, Even</button><br /><br /><button class=buttons001 onclick=q1i()>Even, Odd</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options019 = ["<button class=buttons001 onclick=q1c()>1010100</button><br /><br /><button class=buttons001 onclick=q1i()>1011010</button><br /><br /><button class=buttons001 onclick=q1i()>1011100</button><br /><br /><button class=buttons001 onclick=q1i()>1011111</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options020 = ["<button class=buttons001 onclick=q1i()>1 to 11 Gates</button><br /><br /><button class=buttons001 onclick=q1i()>12 to 99 Gates</button><br /><br /><button class=buttons001 onclick=q1c()>100 to 10,000 Gates</button><br /><br /><button class=buttons001 onclick=q1i()>More than 10,000 Gates</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+		var options021 = ["<button class=buttons001 onclick=q1i()>All Thrown Objects</button><br /><br /><button class=buttons001 onclick=q1i()>No Thrown Objects</button><br /><br /><button class=buttons001 onclick=q1c()>Any thrown object that has not been caught by an earlier catch block</button><br /><br /><button class=buttons001 onclick=q1i()>All thrown objects that have been caught by an earlier catch block</button>"];
+        var options022 = ["<button class=buttons001 onclick=q1i()>Formal Parameters</button><br /><br /><button class=buttons001 onclick=q1i()>Reference Parameters</button><br /><br /><button class=buttons001 onclick=q1i()>Overloaded Parameters</button><br /><br /><button class=buttons001 onclick=q1c()>Default Parameters</button>"];
+        var options023 = ["<button class=buttons001 onclick=q1c()>The value of i assigned to c and then i incremented by 1</button><br /><br /><button class=buttons001 onclick=q1i()>I to be incremented by 1 and then the value of i assigned to c</button><br /><br /><button class=buttons001 onclick=q1i()>Value of i assigned to c</button><br /><br /><button class=buttons001 onclick=q1i()>I to be incremented by 1</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options024 = ["<button class=buttons001 onclick=q1i()>Is a name of a thing such as variable and function</button><br /><br /><button class=buttons001 onclick=q1i()>Is made up of letters, numerals, and the underscore</button><br /><br /><button class=buttons001 onclick=q1i()>Can contain both uppercase and lowercase letters</button><br /><br /><button class=buttons001 onclick=q1c()>All of the above</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options025 = ["<button class=buttons001 onclick=q1i()>const char[4] partNo = AB45</button><br /><br /><button class=buttons001 onclick=q1i()>const char[5] partNo = AB45</button><br /><br /><button class=buttons001 onclick=q1i()>const char[5] partNo = AB45</button><br /><br /><button class=buttons001 onclick=q1i()>const char partNo[5] = AB45</button>><br /><br /><button class=buttons001 onclick=q1c()>None of above</button>"];
+        var options026 = ["<button class=buttons001 onclick=q1i()>The 'while' loop body is executed</button><br /><br /><button class=buttons001 onclick=q1c()>The body of the 'while' statement may be executed many times, the body of the 'if statements only once</button><br /><br /><button class=buttons001 onclick=q1i()>The conditional expression following the keyboard is evaluated differently</button><br /><br /><button class=buttons001 onclick=q1i()>All of the above</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options027 = ["<button class=buttons001 onclick=q1i()>Permit two different expressions to appear in situations where only one expression would ordinarily be used</button><br /><br /><button class=buttons001 onclick=q1i()>Terminate loops or to exit from a switch</button><br /><br /><button class=buttons001 onclick=q1i()>Alter the normal sequence of program execution by transferring control to some other part of the program</button><br /><br /><button class=buttons001 onclick=q1i()>All of the above</button><br /><br /><button class=buttons001 onclick=q1c()>None of above</button>"];
+        var options028 = ["<button class=buttons001 onclick=q1i()>assign.h</button><br /><br /><button class=buttons001 onclick=q1i()>copy.h</button><br /><br /><button class=buttons001 onclick=q1c()>string.h</button><br /><br /><button class=buttons001 onclick=q1i()>strcopy.h</button><br /><br /><button class=buttons001 onclick=q1i()>strcpy.h</button>"];
+        var options029 = ["<button class=buttons001 onclick=q1i()>4</button><br /><br /><button class=buttons001 onclick=q1c()>6</button><br /><br /><button class=buttons001 onclick=q1i()>3</button><br /><br /><button class=buttons001 onclick=q1i()>1</button><br /><br /><button class=buttons001 onclick=q1i()>None of above</button>"];
+        var options030 = ["<button class=buttons001 onclick=q1i()>amount[0] = amount[0] + 2;</button><br /><br /><button class=buttons001 onclick=q1i()>amount, fee[0] = amount, fee [0] + 2;</button><br /><br /><button class=buttons001 onclick=q1i()>feelnfo.amount[0] = feelnfo.amount[0] + 2;</button><br /><br /><button class=buttons001 onclick=q1c()>fee[0].amount = fee[0].amount + 2;</button><br /><br /><button class=buttons001 onclick=q1i()>fee.amount[0] = fee.amount[0] + 2;</button>"];
+
+        var a = 0;
+        a++;
+        var b = 0;
+        b++;
+
+        function begin001() {
+            c = 2700;
+            disappear001.innerHTML = "";
+            message001.innerHTML = question001[0];
+            message002.innerHTML = options001;
+            number001.innerHTML = a++;
+        }
+
+        function q1c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q1i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q2c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q2i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q3c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q3i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q4c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q4i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q5c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q5i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q6c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q6i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q7c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q7i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q8c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q8i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q9c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q9i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q10c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q10i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+		
+		function q11c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q11i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q12c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q12i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q13c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q13i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q14c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q14i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q15c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q15i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q16c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q16i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q17c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q17i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q18c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q18i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q19c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q19i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q20c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q20i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+		
+		function q21c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q21i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q22c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q22i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q23c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q23i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q24c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q24i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q25c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q25i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q26c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q26i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q27c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q27i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q28c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q28i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q29c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q29i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q30c() {
+            message003.innerHTML = "Correct";
+            message002.innerHTML = "";
+            score001.innerHTML = b++;
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function q30i() {
+            message003.innerHTML = "Incorrect";
+            message002.innerHTML = "";
+            message004.innerHTML = "<button class=buttons002 onclick=next001()>Next</button>";
+        }
+
+        function next001() {
+            if (a == "2") {
+                message001.innerHTML = question001[1];
+                message002.innerHTML = options002;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "3") {
+                message001.innerHTML = question001[2];
+                message002.innerHTML = options003;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "4") {
+                message001.innerHTML = question001[3];
+                message002.innerHTML = options004;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "5") {
+                message001.innerHTML = question001[4];
+                message002.innerHTML = options005;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "6") {
+                message001.innerHTML = question001[5];
+                message002.innerHTML = options006;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "7") {
+                message001.innerHTML = question001[6];
+                message002.innerHTML = options007;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "8") {
+                message001.innerHTML = question001[7];
+                message002.innerHTML = options008;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "9") {
+                message001.innerHTML = question001[8];
+                message002.innerHTML = options009;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "10") {
+                message001.innerHTML = question001[9];
+                message002.innerHTML = options010;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+			
+			else if (a == "11") {
+                message001.innerHTML = question001[10];
+                message002.innerHTML = options011;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "12") {
+                message001.innerHTML = question001[11];
+                message002.innerHTML = options012;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "13") {
+                message001.innerHTML = question001[12];
+                message002.innerHTML = options013;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "14") {
+                message001.innerHTML = question001[13];
+                message002.innerHTML = options014;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "15") {
+                message001.innerHTML = question001[14];
+                message002.innerHTML = options015;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "16") {
+                message001.innerHTML = question001[15];
+                message002.innerHTML = options016;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "17") {
+                message001.innerHTML = question001[16];
+                message002.innerHTML = options017;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "18") {
+                message001.innerHTML = question001[17];
+                message002.innerHTML = options018;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+			
+			else if (a == "19") {
+                message001.innerHTML = question001[18];
+                message002.innerHTML = options019;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "20") {
+                message001.innerHTML = question001[19];
+                message002.innerHTML = options020;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "21") {
+                message001.innerHTML = question001[20];
+                message002.innerHTML = options021;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "22") {
+                message001.innerHTML = question001[21];
+                message002.innerHTML = options022;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "23") {
+                message001.innerHTML = question001[22];
+                message002.innerHTML = options023;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "24") {
+                message001.innerHTML = question001[23];
+                message002.innerHTML = options024;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "25") {
+                message001.innerHTML = question001[24];
+                message002.innerHTML = options025;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "26") {
+                message001.innerHTML = question001[25];
+                message002.innerHTML = options026;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+			
+			else if (a == "27") {
+                message001.innerHTML = question001[26];
+                message002.innerHTML = options027;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "28") {
+                message001.innerHTML = question001[27];
+                message002.innerHTML = options028;
+                message003.innerHTML = ""
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "29") {
+                message001.innerHTML = question001[28];
+                message002.innerHTML = options029;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "30") {
+                message001.innerHTML = question001[29];
+                message002.innerHTML = options030;
+                message003.innerHTML = "";
+                number001.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+			
+			else {
+                window.clearInterval(update);
+                
+                message001.innerHTML = "End of Test";
+				document.getElementById("time001").innerHTML = 2700 - c;
+                message002.innerHTML = "";
+				if(score001.innerHTML<18)
+                {
+				message003.innerHTML = "Fail";
+				}
+				else
+				{
+				message003.innerHTML = "Pass";
+				}
+                message004.innerHTML = "<button class=buttons002 onclick=repeat001()>Finish</button>";
+            }
+        }
+
+        function timer001() {
+            c = c - 1;
+            if (c < 2700) {
+                time001.innerHTML = c;
+            }
+
+            if (c < 1) {
+                window.clearInterval(update);
+                message001.innerHTML = "Time's up";	
+                message002.innerHTML = "";
+				if(score001.innerHTML<18)
+                {
+				message003.innerHTML = "Fail";
+				}
+				else
+				{
+				message003.innerHTML = "Pass";
+				}
+                message004.innerHTML = "<button class=buttons002 onclick=repeat001()>Finish</button>";
+            }
+        }
+
+        update = setInterval("timer001()", 1000);
+
+        function repeat001() {
+            window.location.href = 'adminlogin.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+body{
+	magin:0;
+	pending:0;
+	background:url(image.jpg);
+	background-size:cover;
+    background-position:center;
+	font-family:Caviar Dreams;
+	}
+	.login-box{
+		width:320px;
+		height:420px;
+		background:rgba(45, 192, 255, 240);
+		color:rgba(255, 255, 255);
+		top:50%;
+		left:50%;
+		position:Absolute;
+		transform:translate(-50%,-50%);
+		box-sizing:border-box;
+		padding:50px 50px;
+	}
+	.avatar{
+		width:100px;
+		height:100px;
+		border-radius:50%;
+		position:absolute;
+		top:-50px;
+		left:calc(50% - 50px);
+	}
+	h1{
+		margin:0;
+		padding:0 0 30px;
+		text-align:center;
+		font-size:25px;
+		
+	}
+	p{
+		text-align:center;
+		font-family:Caviar Dreams;
+	}

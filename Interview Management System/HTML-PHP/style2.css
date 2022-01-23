@@ -1,0 +1,13 @@
+body{
+	magin:0;
+	pending:0;
+	background:url(image.jpg);
+	background-size:cover;
+    background-position:center;
+	font-family:Caviar Dreams;
+
+		padding:0 0 50px;
+		text-align:center;
+		font-size:35px;
+		color:rgba(255, 255, 255);
+	}
