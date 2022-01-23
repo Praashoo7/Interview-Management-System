@@ -1,0 +1,54 @@
+*****************************************************************************
+
+Hello Welcome to the System
+
+*****************************************************************************
+
+Purpose for Using the System 
+
+System is Developed to create an Environment which 
+   can help to maintain the Database as well as to conduct the Test. 
+
+Restriction is that Test can be only Objective type.
+
+There is need of a Supervisor who must be there at the time of Test.
+
+*****************************************************************************
+
+To Start the system you have to choose your section from 
+System Menus Are : 
+
+        Add Candidates
+        Question Paper Database
+        Add Results
+        About &
+        And this Help
+
+Firstly you'll need Correct Username and Password to
+access the System.
+
+It also means that you should be Administrator to access the System.
+
+The Test Strats when Candidate Logs In with the Username and Password
+Sended to the candidate via E-Mail.
+ 
+For any kind of Queries regarding System Errors,
+Candidate can ask to Supervisor.
+
+System will produce the Result according to the Answers.
+
+After every Answer candidate can see if the Answer was Correct or Not.
+
+The relode Buttons on the HTML page are Disabled.
+
+System will show Total Time Taken,
+Total Questions,
+Correct Answers,
+and Result that if Candidate Passed the Test or Failed.
+
+Both Supervisor and Candidate have to follow the Generated Results.
+
+So have a Happy time while using this System.
+
+*****************************************************************************
+*****************************************************************************
